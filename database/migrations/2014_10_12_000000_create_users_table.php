@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('image_url');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('phone')->unique();
             $table->string('email')->unique();
+            $table->enum('type',['cars dealer','real estate','service provider','hotel owner','restaurant','company','editor','admin','super admin']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('dashboard.layouts.head')
+@yield('style')
 <body>
 
 <div class="wrapper">
@@ -13,13 +14,15 @@
     <div class="container-fluid">
         @include('dashboard.layouts.left-sidebar')
         <div class="content-wrapper">
-
             @yield('content')
+
             @include('dashboard.layouts.footer')
         </div>
 
     </div>
 </div>
-@extends('dashboard.layouts.footer-scripts')
+
+@include('dashboard.layouts.scripts')
+@yield('scripts')
 </body>
 </html>

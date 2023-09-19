@@ -21,32 +21,37 @@
                         <table id="datatable" class="table-bordered border table table-striped dataTable p-0">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Image</th>
-                                <th>#</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($categories as $category)
                             <tr>
-                                <td>{{$category->id}}</td>
+                                <td>{{$category->sort_number}}</td>
                                 <td>{{$category->name}}</td>
-                                <td>{!!$category->description !!}</td>
-                                <td class="tr-image" ><img class="image-20" src="{{$category->image_url}}"></td>
+                                <td>{{$category->description}}</td>
+                                <td><span
+                                            class="@if($category->status == 'active')text-success @else text-danger @endif ">{{$category->status}} </span>
+                                </td>
                                 <td>
-                                    <div class="row ">
-                                        <a class="pe-2" href="{{route('dashboard.category.edit',$category->id)}}"> <i
-                                                class="fa fa-pencil"></i></a>
-                                        <form method="POST" action="{{route('dashboard.category.destroy',$category->id)}}">
+                                    <div class="row justify-content-center">
+                                        <a class="pe-2 w-auto" href="{{route('dashboard.categories.edit',$category->id)}}"> <i class="btn btn-warning fa fa-pencil"></i></a>
+                                        <a class="pe-2 w-auto">
+                                        <form method="POST" action="{{route('dashboard.categories.destroy',$category->id)}}">
+
                                             @csrf
                                             @method('DELETE')
-                                            <button style="border: none;"  class="fa fa-trash-o text-danger" onclick="return confirm('Are you sure you want to delete this {{$category->name}} ')">
+                                            <button  class="btn-danger btn  fa fa-trash-o" onclick="return confirm('Are you sure you want to delete this {{$category->name}} ')">
                                             </button>
                                         </form>
+                                        </a>
                                     </div>
                                 </td>
+
                             </tr>
                             @endforeach
                         </table>

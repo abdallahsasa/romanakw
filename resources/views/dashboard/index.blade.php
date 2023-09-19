@@ -1,5 +1,6 @@
 @extends('dashboard.layouts.app')
 @section('content')
+
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
@@ -205,7 +206,7 @@
                     <div class="tab nav-border" style="position: relative;">
                         <div class="d-block d-md-flex justify-content-between">
                             <div class="d-block w-100">
-                                <h5 class="card-title">Best Sellers</h5>
+                                <h5 class="card-title">Top Visited Posts</h5>
                             </div>
                             <div class="d-block d-md-flex nav-tabs-custom">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -394,7 +395,8 @@
                         <li class="mb-20">
                             <div class="d-flex">
                                 <div class="position-relative">
-                                    <img class="img-fluid mr-15 avatar-small" src="{{asset('/dashboard/images/item/01.png')}}" alt="">
+                                    <img class="img-fluid mr-15 avatar-small"
+                                         src="{{asset('/dashboard/images/item/01.png')}}" alt="">
                                 </div>
                                 <div class="ms-3 w-100">
                                     <h6 class="mt-0 mb-0">Car dealer <span
@@ -407,7 +409,8 @@
                         <li class="mb-20">
                             <div class="d-flex">
                                 <div class="position-relative clearfix">
-                                    <img class="img-fluid mr-15 avatar-small" src="{{asset('/dashboard/images/item/02.png')}}" alt="">
+                                    <img class="img-fluid mr-15 avatar-small"
+                                         src="{{asset('/dashboard/images/item/02.png')}}" alt="">
                                 </div>
                                 <div class="ms-3 w-100">
                                     <h6 class="mt-0 mb-0">Webster <span
@@ -420,7 +423,8 @@
                         <li class="mb-20">
                             <div class="d-flex">
                                 <div class="position-relative">
-                                    <img class="img-fluid mr-15 avatar-small" src="{{asset('/dashboard/images/item/03.png')}}" alt="">
+                                    <img class="img-fluid mr-15 avatar-small"
+                                         src="{{asset('/dashboard/images/item/03.png')}}" alt="">
                                 </div>
                                 <div class="ms-3 w-100">
                                     <h6 class="mt-0 mb-0">The corps <span
@@ -433,7 +437,8 @@
                         <li>
                             <div class="d-flex">
                                 <div class="position-relative clearfix">
-                                    <img class="img-fluid mr-15 avatar-small" src="{{asset('/dashboard/images/item/04.png')}}" alt="">
+                                    <img class="img-fluid mr-15 avatar-small"
+                                         src="{{asset('/dashboard/images/item/04.png')}}" alt="">
                                 </div>
                                 <div class="ms-3 w-100">
                                     <h6 class="mt-0 mb-0">Sam martin <span
@@ -491,7 +496,8 @@
                 </div>
                 <div class="card-body text-center position-relative">
                     <div class="avatar-top">
-                        <img class="img-fluid w-25 rounded-circle " src="{{asset('/dashboard/images/team/13.jpg')}}" alt="">
+                        <img class="img-fluid w-25 rounded-circle " src="{{asset('/dashboard/images/team/13.jpg')}}"
+                             alt="">
                     </div>
                     <div class="row">
                         <div class="col-sm-4 mt-30">
@@ -524,102 +530,5 @@
             </div>
         </div>
     </div>
-    <div class="calendar-main mb-20">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="row">
-                    <div class="col-12">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#add-category"
-                           class="btn btn-primary w-100 py-2">
-                            <i class="fa fa-plus pe-2"></i> Create New
-                        </a>
-                        <div id="external-events" class="m-t-20">
-                            <br>
-                            <p class="text-muted">Drag and drop your event or click in the calendar</p>
-                            <div class="external-event bg-success fc-event">
-                                <i class="fa fa-circle me-2 vertical-middle"></i>New Theme Release
-                            </div>
-                            <div class="external-event bg-info fc-event">
-                                <i class="fa fa-circle me-2 vertical-middle"></i>My Event
-                            </div>
-                            <div class="external-event bg-warning fc-event">
-                                <i class="fa fa-circle me-2 vertical-middle"></i>Meet manager
-                            </div>
-                            <div class="external-event bg-danger fc-event">
-                                <i class="fa fa-circle me-2 vertical-middle"></i>Create New theme
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div id="calendar"></div>
-                <div class="modal" tabindex="-1" role="dialog" id="event-modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add New Event</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-20"></div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close
-                                </button>
-                                <button type="button" class="btn btn-success save-event">Create event</button>
-                                <button type="button" class="btn btn-danger delete-event"
-                                        data-bs-dismiss="modal">Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal Add Category -->
-                <div class="modal" tabindex="-1" role="dialog" id="add-category">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add a category</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-20">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="control-label form-label">Category Name</label>
-                                            <input class="form-control form-white" placeholder="Enter name"
-                                                   type="text" name="category-name"/>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="control-label form-label">Choose Category
-                                                Color</label>
-                                            <select class="form-control form-white"
-                                                    data-bs-placeholder="Choose a color..."
-                                                    name="category-color">
-                                                <option value="success">Success</option>
-                                                <option value="danger">Danger</option>
-                                                <option value="info">Info</option>
-                                                <option value="primary">Primary</option>
-                                                <option value="warning">Warning</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close
-                                </button>
-                                <button type="button" class="btn btn-success save-category"
-                                        data-bs-dismiss="modal">Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 

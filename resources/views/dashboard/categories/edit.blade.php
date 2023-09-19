@@ -27,86 +27,80 @@
             @endif
             <div class="card card-statistics mb-30">
                 <div class="card-body">
-
-                    <form method="POST" action="{{route('dashboard.category.update',$category->id)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('dashboard.categories.update',$category->id)}}"
+                          enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="mb-3">
-                            <label class="form-label" for="exampleInputEmail1">Category Name</label>
-                            <input required name="name" type="text" class="form-control" aria-describedby="emailHelp"
-                                   placeholder="Ex.. Fresh juice " value="{{$category->name}}">
-                            @if($errors->has('name'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $errors->first('name') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="exampleFormControlTextarea1">Category Description</label>
-                            <textarea id="summernote" name="description" class="form-control" id="exampleFormControlTextarea1"
-                                      rows="3">{{$category->description}}</textarea>
-                            @if($errors->has('description'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $errors->first('description') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div class="repeater-add">
-                            <div data-repeater-list="translations">
-                                <div data-repeater-item="">
-                                    <div class="row mb-20">
-                                        <div class="col-md-3">
-                                            <label class="form-label" for="exampleInputEmail1">Language</label>
-                                            <select required name="language" class="form-select form-select-lg " id="size" style="padding-top: 0.6rem;padding-bottom: 0.7rem;">
-                                                <option value="" disabled >Language</option>
-                                                <option value="ar" selected >Arabic</option>
+                        <div class="row">
+                            <div class="col-md-6 mb-30">
+                                <div class="card card-statistics h-100">
+                                    <div class="card-body">
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="parent_id">Parent Name</label>
+                                            <select name="parent_id" class="form-select form-select-lg mb-3" id="parent_id">
+                                                <option value="">Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}" {{ old('parent_id', $category->id) == $category->id || (is_null(old('parent_id')) && is_null($category->parent_id)) ? 'selected' : '' }}>
+                                                        {{ $category->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
 
+                                            @if($errors->has('parent_id'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('parent_id') }}
+                                                </div>
+                                            @endif
+                                            <div id="categoryError" class="invalid-feedback"></div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label" for="exampleInputEmail1">Category
-                                                Name</label>
+
+
+
+
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleInputEmail1">Category Name</label>
                                             <input required name="name" type="text" class="form-control"
                                                    aria-describedby="emailHelp"
-                                                   placeholder="Enter Category Name" value="">
-
+                                                   placeholder="Ex.. Fresh juice " value="{{$category->name}}">
+                                            @if($errors->has('name'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('name') }}
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlTextarea1">Category
                                                 Description</label>
-                                            <textarea id="summernote" name="description"
-                                                      class="form-control"
+                                            <textarea name="description" class="form-control" id="description"
                                                       id="exampleFormControlTextarea1"
-                                                      rows="2"></textarea>
+                                                      rows="3">{{$category->description}}</textarea>
+                                            @if($errors->has('description'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('description') }}
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="d-grid">
-                                                <input class="btn btn-danger mt-30"
-                                                       data-repeater-delete="" type="button"
-                                                       value="Delete">
-                                            </div>
+                                        <div class="mb-3">
+                                            <label class="form-label d-block" for="exampleFormControlFile1">Category
+                                                Image</label>
+                                            <img width="15%" src="{{$category->image_url}}"
+                                                 class="form-label d-block w-10" for="exampleFormControlFile1" alt="">
+                                            <input name="image" type="file" class="form-control" id="customFile"
+                                                   value="{{$category->image_url}}">
+                                            @if($errors->has('image'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('image') }}
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="form-group clearfix mb-20">
-                                <input class="button" data-repeater-create="" type="button"
-                                       value="Add Category New Translation">
                             </div>
 
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label d-block" for="exampleFormControlFile1">Category Image</label>
-                            <img width="15%" src="{{$category->image_url}}" class="form-label d-block w-10" for="exampleFormControlFile1" alt="">
-                            <input name="image" type="file" class="form-control" id="customFile" value="{{$category->image_url}}">
-                            @if($errors->has('image'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $errors->first('image') }}
-                                </div>
-                            @endif
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>

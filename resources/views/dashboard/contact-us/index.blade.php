@@ -24,6 +24,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone </th>
+                            <th>Subject </th>
                             <th>Message </th>
                             <th>Date </th>
                         </tr>
@@ -34,6 +35,7 @@
                                 <td>{{$message->name}}</td>
                                 <td>{{$message->email}}</td>
                                 <td>{{$message->number}}</td>
+                                <td>{{$message->subject->subject}}</td>
                                 <td>{{$message->message}}</td>
                                 <td>{{$message->created_at}}</td>
                             </tr>
