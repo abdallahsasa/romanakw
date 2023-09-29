@@ -40,6 +40,10 @@ class Post extends Model
     {
         return $this->hasMany(PostView::class);
     }
+    public function media()
+    {
+        return $this->hasMany(PostMedia::class);
+    }
 
     public function likes()
     {

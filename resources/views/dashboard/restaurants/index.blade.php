@@ -4,12 +4,12 @@
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
-                <h4 class="mb-0">All Books</h4>
+                <h4 class="mb-0">All Restaurants</h4>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pe-0 float-start float-sm-end">
-                    <li class="breadcrumb-item"><a href="index.html" class="default-color">Home</a></li>
-                    <li class="breadcrumb-item active ps-0">All Books</li>
+                    <li class="breadcrumb-item"><a href="/dashboard/index" class="default-color">Home</a></li>
+                    <li class="breadcrumb-item active ps-0">All Restaurants</li>
                 </ol>
             </div>
         </div>
@@ -32,39 +32,37 @@
                         <table id="datatable" class="table-bordered border table table-striped dataTable p-0">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>SKU</th>
+                                <th>Title</th>
+                                <th>Slug</th>
                                 <th>Status</th>
                                 <th>Featured</th>
                                 <th>Category</th>
-                                <th>Tags</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
 
-                            @foreach($products as $product )
+                            @foreach($posts as $post )
                                 <tr>
 
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->sku}}</td>
+                                    <td>{{$post->title}}</td>
+                                    <td>{{$post->slug}}</td>
                                     <td><span
-                                            class="@if($product->status == 'active')text-success @else text-danger @endif ">{{$product->status}} </span>
+                                            class="@if($post->status == 'active')text-success @else text-danger @endif ">{{$post->status}} </span>
                                     </td>
-                                    <td> <span class=" @if ($product->featured == '1') text-success @else text-danger @endif "> @if($product->featured == 1) Yes @else No @endif </span></td>
-                                    <td>{{$product->category->name}}</td>
-                                    <td>{{ implode(', ', array_map('trim', $product->tags->pluck('tag')->toArray()))}} </td>
+                                    <td> <span class=" @if ($post->featured == '1') text-success @else text-danger @endif "> @if($post->featured == 1) Yes @else No @endif </span></td>
+                                    <td>{{$post->category->name}}</td>
                                     <td>
                                         <div class="row justify-content-center">
-                                            <a class="pe-2 w-auto" href="{{ route('dashboard.product.edit', $product->id) }}">
+                                            <a class="pe-2 w-auto" href="{{ route('dashboard.posts.edit', $post->id) }}">
                                                 <button class="btn btn-warning fa fa-pencil"></button>
                                             </a>
                                             <a class="pe-2 w-auto">
-                                                <form method="POST" action="{{ route('dashboard.product.destroy', $product->id) }}">
+                                                <form method="POST" action="{{ route('dashboard.posts.destroy', $post->id) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" class="btn-danger btn  fa fa-trash-o" onclick="return confirm('Are you sure you want to delete {{$product->name}}')"></button>
+                                                    <button type="button" class="btn-danger btn  fa fa-trash-o" onclick="return confirm('Are you sure you want to delete {{$post->name}}')"></button>
                                                 </form>
                                             </a>
                                         </div>
@@ -87,7 +85,7 @@
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('dashboard.products.data') }}",
+                ajax: "{{ route('dashboard.posts.data') }}",
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'sku', name: 'sku'},

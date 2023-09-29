@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('post_media', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->bigInteger('post_id')->unsigned();
+            $table->index('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->string('image_name');
+            $table->string('image_url');
+            $table->enum('is_featured',['true','false'])->default('false');
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->bigInteger('sort_number')->nullable();
             $table->timestamps();
         });
     }

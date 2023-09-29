@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Language;
 use App\Models\Post\PostCategory;
+use App\Models\Post\PostCategoryTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -17,11 +19,13 @@ class PostCategoryController extends Controller
     private $show_view;
     private $success_message;
     private $error_message;
+    private $languages;
 
 
     public function __construct()
     {
         $this->model_instance = PostCategory::class;
+        $this->model_instance_translation = PostCategoryTranslation::class;
         $this->index_view = 'dashboard.categories.index';
         $this->create_view = 'dashboard.categories.create';
         $this->show_view = 'dashboard.categories.show';
@@ -35,6 +39,7 @@ class PostCategoryController extends Controller
         $this->update_success_message = 'Category Updated successfully';
 
         $this->update_error_message = "Category Couldn't Been Updated";
+        $this->languages = Language::all();
 
     }
 
@@ -51,24 +56,40 @@ class PostCategoryController extends Controller
     }
     public function StoreValidationRules()
     {
-        return [
+        $rules = [
+            'status' => 'required|in:active,inactive',
             'name' => 'required|string|min:3|max:200',
             'slug' => 'required|string|min:3|max:20',
-            'description' => 'required|nullable|string',
-            'status' => 'required|in:active,inactive',
-            'parent_id' => 'nullable|integer|min:1',
+            'description' => 'required|string',
             'meta_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'image' => 'required|image',
-            'image.*' => 'image|mimes:jpg,jpeg,png,webp',
         ];
+        foreach ($this->languages as $language) {
+            if($language->code!='en') {
+                $rules[$language->code . '.name'] = 'required|string|min:3|max:200';
+                $rules[$language->code . '.slug'] = 'required|string|min:3|max:20';
+                $rules[$language->code . '.description'] = 'required|string';
+                $rules[$language->code . '.meta_title'] = 'nullable|string';
+                $rules[$language->code . '.meta_description'] = 'nullable|string';
+            }
+        }
+
+        $rules['image.*'] = 'image|mimes:jpg,jpeg,png,webp';
+        return $rules;
     }
+
     public function store(Request $request)
     {
+
+
         $validated_data = $request->validate($this->StoreValidationRules());
         $object="";
 
-            $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
+
+        // Create the category model record
+        $objectData = Arr::except($validated_data, ['image', 'ar', 'tr']);
+        $object = $this->model_instance::create($objectData);
             $object->sort_number = $object->id;
 
             if ($request->has('image')) {
@@ -80,8 +101,21 @@ class PostCategoryController extends Controller
                 $object->image_name = $image_name;
                 $object->update();
             }
+        foreach ($this->languages as $language) {
+            if ($language->code != 'en') {
+                // Create translation model records
+                if (isset($validated_data[$language->code ])) {
+                    $TranslationData = $validated_data[$language->code];
+                    $TranslationData['category_id'] = $object->id;
+                    $TranslationData['language_id'] = $language->id;
+                    //return $TranslationData;
+                    $Model = $this->model_instance_translation::create($TranslationData);
+                    $Model->save();
+                }
+            }
+        }
 
-            $log_message = trans('categories.create_log') . '#' . $object->id;
+        $log_message = trans('categories.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);
 
             return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);

@@ -25,6 +25,13 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
+                @if ($message = \Session::get('errors'))
+                    <div class="alert alert-danger alert-block">
+                        @foreach($message->all() as $error)
+                            <strong>{{ $error }}</strong><br>
+                        @endforeach
+                    </div>
+                @endif
             <div class="card card-statistics mb-30">
                 <div class="card-body">
 
@@ -172,55 +179,55 @@
                                                             <div class="mb-3 col-6">
                                                                 <label class="form-label" for="exampleInputEmail1">
                                                                     Name </label>
-                                                                <input required name="name[{{$lang->code}}]" type="text" class="form-control"
+                                                                <input required name="{{$lang->code}}[name]" type="text" class="form-control"
                                                                        value="{{ old('name'.$lang->code) }}">
-                                                                @if($errors->has('name.en'))
+                                                                @if($errors->has($lang->code.'name'))
                                                                     <div class="alert alert-danger" role="alert">
-                                                                        {{ $errors->first('name'.$lang->code) }}
+                                                                        {{ $errors->first($lang->code.'name') }}
                                                                     </div>
                                                                 @endif
                                                             </div>
                                                             <div class="mb-3 col-6">
                                                                 <label class="form-label" for="exampleInputEmail1">
                                                                     Slug </label>
-                                                                <input required name="slug[{{$lang->code}}]" type="text" class="form-control"
-                                                                       value="{{ old('slug'.$lang->code) }}">
-                                                                @if($errors->has('slug'.$lang->code))
+                                                                <input required name="{{$lang->code}}[slug]" type="text" class="form-control"
+                                                                       value="{{ old($lang->code.'slug') }}">
+                                                                @if($errors->has($lang->code.'slug'))
                                                                     <div class="alert alert-danger" role="alert">
-                                                                        {{ $errors->first('slug'.$lang->code) }}
+                                                                        {{ $errors->first($lang->code.'slug') }}
                                                                     </div>
                                                                 @endif
                                                             </div>
                                                             <div class="mb-3 col-12">
                                                                 <label class="form-label" for="exampleInputEmail1">
                                                                     Description </label>
-                                                                <input required name="description[{{$lang->code}}]" type="text" class="form-control"
-                                                                       value="{{ old('description'.$lang->code) }}">
-                                                                @if($errors->has('description'.$lang->code))
+                                                                <input required name="{{$lang->code}}[description]" type="text" class="form-control"
+                                                                       value="{{ old($lang->code.'description') }}">
+                                                                @if($errors->has($lang->code.'description'))
                                                                     <div class="alert alert-danger" role="alert">
-                                                                        {{ $errors->first('description'.$lang->code) }}
+                                                                        {{ $errors->first($lang->code.'description') }}
                                                                     </div>
                                                                 @endif
                                                             </div>
                                                             <div class="mb-3 col-6">
                                                                 <label class="form-label" for="exampleInputEmail1">
                                                                     Meta Title </label>
-                                                                <input required name="meta_title[{{$lang->code}}]" type="text" class="form-control"
-                                                                       value="{{ old('meta_title'.$lang->code) }}">
-                                                                @if($errors->has('meta_title'.$lang->code))
+                                                                <input required name="{{$lang->code}}[meta_title]" type="text" class="form-control"
+                                                                       value="{{ old($lang->code.'meta_title') }}">
+                                                                @if($errors->has($lang->code.'meta_title'))
                                                                     <div class="alert alert-danger" role="alert">
-                                                                        {{ $errors->first('meta_title'.$lang->code) }}
+                                                                        {{ $errors->first($lang->code.'meta_title') }}
                                                                     </div>
                                                                 @endif
                                                             </div>
                                                             <div class="mb-3 col-6">
                                                                 <label class="form-label" for="exampleInputEmail1">
                                                                     Meta Description </label>
-                                                                <input required name="meta_description[{{$lang->code}}]" type="text" class="form-control"
-                                                                       value="{{ old('meta_description'.$lang->code) }}">
-                                                                @if($errors->has('meta_description'.$lang->code))
+                                                                <input required name="{{$lang->code}}[meta_description]" type="text" class="form-control"
+                                                                       value="{{ old($lang->code.'meta_description') }}">
+                                                                @if($errors->has($lang->code.'meta_description'))
                                                                     <div class="alert alert-danger" role="alert">
-                                                                        {{ $errors->first('meta_description'.$lang->code) }}
+                                                                        {{ $errors->first($lang->code.'meta_description') }}
                                                                     </div>
                                                                 @endif
                                                             </div>

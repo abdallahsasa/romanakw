@@ -12,7 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('restaurants', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('slug');
+            $table->string('logo_url');
+            $table->string('menu_url');
+            $table->string('instagram_url');
+            $table->string('facebook_url');
+            $table->string('youtube_url');
+            $table->string('map_url');
+            $table->string('location');
+            $table->string('phone_number');
+            $table->text('description');
+            $table->string('meta_title');
+            $table->string('meta_description');
+
             $table->timestamps();
         });
     }
