@@ -1,0 +1,13 @@
+<script src="{{asset('website/js/jquery-3.5.0.min.js')}}"></script>
+<script src="{{asset('website/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('website/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('website/js/metisMenu.min.js')}}"></script>
+<script src="{{asset('website/js/wow.min.js')}}"></script>
+<script src="{{asset('website/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('website/js/jquery-ui.js')}}"></script>
+<script src="{{asset('website/js/datepicker.js')}}"></script>
+<script src="{{asset('website/js/jquery.timepicker.min.js')}}"></script>
+<script src="{{asset('website/js/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('website/js/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{asset('website/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('website/js/main.js')}}"></script>

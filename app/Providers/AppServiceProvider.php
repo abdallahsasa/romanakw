@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $languages=Language::all();
-        View::share('languages', $languages);
+//        $languages=Language::all();
+//        View::share('languages', $languages);
     }
 }
