@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\ContactUsController;
 use App\Http\Controllers\Backend\PostCategoryController;
+use App\Http\Controllers\FrontEnd\ContactUsPageController;
+use App\Http\Controllers\FrontEnd\ProductPageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +21,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/',[\App\Http\Controllers\FrontEnd\NavigationController::class, 'home'])->name('home');
-Route::get('/home', [\App\Http\Controllers\FrontEnd\NavigationController::class, 'home'])->name('home');
+Route::get('/',[\App\Http\Controllers\FrontEnd\NavigationController::class, 'home'])->name('website.home');
+Route::get('/home', [\App\Http\Controllers\FrontEnd\NavigationController::class, 'home'])->name('website.home');
+Route::get('contact', [ContactUsPageController::class, 'index'])->name('website.contact');
+
+Route::get('/products', [ProductPageController::class, 'index'])->name('website.products.index');
+Route::get('/product/{id}', [ProductPageController::class, 'details'])->name('website.product.details');
+
+
+
 
 
 Route::middleware(['auth','verified'])->group(function () {

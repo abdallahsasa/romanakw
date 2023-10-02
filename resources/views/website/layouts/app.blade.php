@@ -31,10 +31,13 @@
     @include('website.layouts.header')
 
     <!-- header end -->
-
+    <!-- main body end -->
+    <main>
 
     @yield('content')
 
+    </main>
+    <!-- main body end -->
     <!-- footer start -->
     @include('website.layouts.footer')
 
