@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_media', function (Blueprint $table) {
+        Schema::create('product_media', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('post_id')->unsigned();
-            $table->index('post_id');
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->bigInteger('product_id')->unsigned();
+            $table->index('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('image_name');
             $table->string('image_url');
             $table->enum('is_featured',['true','false'])->default('false');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_media');
+        Schema::dropIfExists('product_media');
     }
 };

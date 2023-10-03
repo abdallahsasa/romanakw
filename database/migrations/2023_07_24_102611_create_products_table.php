@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('slug');
             $table->longText('description');
-            $table->text('excerpt');
+            $table->text('excerpt')->nullable();
             $table->bigInteger('category_id')->unsigned();
             $table->index('category_id');
-            $table->foreign('category_id')->references('id')->on('post_categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('featured_image_name')->nullable();
             $table->string('featured_image_url');
-            $table->enum('status',['published','draft','private','deleted']);
+            $table->enum('status',['published','draft','private','deleted'])->default('published');
             $table->string('video_link')->nullable();
             $table->string('meta_title');
             $table->string('meta_description');

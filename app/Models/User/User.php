@@ -4,7 +4,7 @@ namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Car\car;
-use App\Models\Post\Post;
+use App\Models\Product\Product;
 use App\Models\Restaurant\restaurant;
 use App\Models\Service\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,7 +52,7 @@ class User extends Authenticatable
     ];
     public function posts()
     {
-        return $this->hasMany(Post::class,'user_id');
+        return $this->hasMany(Product::class,'user_id');
     }
     public function cars()
     {

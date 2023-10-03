@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use App\Models\Post\PostTranslation;
+use App\Models\Product\ProductTranslation;
 use App\Models\Restaurant\restaurant;
 use Illuminate\Http\Request;
 
@@ -36,7 +36,7 @@ class RestaurantController extends Controller
 
         $this->delete_message = 'Restaurant deleted successfully';
         $this->error = 'Something went Wrong';
-        $this->model_instance_translation = PostTranslation::class;
+        $this->model_instance_translation = ProductTranslation::class;
         $this->languages = Language::all();
     }
     /**

@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_category_translations', function (Blueprint $table) {
+        Schema::create('product_category_translations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('category_id')->unsigned();
             $table->index('category_id');
-            $table->foreign('category_id')->references('id')->on('post_categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->bigInteger('language_id')->unsigned();
             $table->index('language_id');
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_category_translations');
+        Schema::dropIfExists('product_category_translations');
     }
 };

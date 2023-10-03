@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use App\Models\Post\Post;
-use App\Models\Post\PostCategory;
-use App\Models\Post\PostCategoryTranslation;
-use App\Models\Post\PostTranslation;
+use App\Models\Product\Product;
+use App\Models\Product\Category;
+use App\Models\Product\CategoryTranslation;
+use App\Models\Product\ProductTranslation;
 use App\Models\User\UserActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -26,7 +26,7 @@ class PostController extends Controller
 
     public function __construct()
     {
-        $this->model_instance = Post::class;
+        $this->model_instance = Product::class;
         $this->index_view = 'dashboard.posts.index';
         $this->create_view = 'dashboard.posts.create';
         $this->show_view = 'dashboard.posts.show';
@@ -44,7 +44,7 @@ class PostController extends Controller
 
         $this->delete_message = 'Post deleted successfully';
         $this->error = 'Something went Wrong';
-        $this->model_instance_translation = PostTranslation::class;
+        $this->model_instance_translation = ProductTranslation::class;
         $this->languages = Language::all();
     }
 
@@ -61,7 +61,7 @@ class PostController extends Controller
         } else
             $posts = $this->model_instance::all()->sortBy('id');
 
-        $categories = PostCategory::where('status', '=', 'active')->get();
+        $categories = Category::where('status', '=', 'active')->get();
 
 
         return view($this->index_view, compact(['posts', 'categories', 'filter']));
@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = PostCategory::where('status', '=', 'active')->get();
+        $categories = Category::where('status', '=', 'active')->get();
         return view($this->create_view, compact('categories'));
     }
 

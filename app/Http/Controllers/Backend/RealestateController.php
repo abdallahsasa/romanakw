@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use App\Models\Post\Post;
-use App\Models\Post\PostCategory;
-use App\Models\Post\PostTranslation;
+use App\Models\Product\Product;
+use App\Models\Product\Category;
+use App\Models\Product\ProductTranslation;
 use App\Models\Realestate\realestate;
 use App\Models\Restaurant\Restaurant;
 use App\Models\Restaurants\RestaurantCategory;
@@ -40,7 +40,7 @@ class RealestateController extends Controller
 
         $this->delete_message = 'Restaurant deleted successfully';
         $this->error = 'Something went Wrong';
-        $this->model_instance_translation = PostTranslation::class;
+        $this->model_instance_translation = ProductTranslation::class;
         $this->languages = Language::all();
     }
     /**

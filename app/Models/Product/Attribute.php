@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Post;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostView extends Model
+class Attribute extends Model
 {
     use HasFactory;
 }

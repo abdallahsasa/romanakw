@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_translations', function (Blueprint $table) {
+        Schema::create('product_translations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('post_id')->unsigned();
-            $table->index('post_id');
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->bigInteger('product_id')->unsigned();
+            $table->index('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->bigInteger('language_id')->unsigned();
             $table->index('language_id');
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_translations');
+        Schema::dropIfExists('product_translations');
     }
 };

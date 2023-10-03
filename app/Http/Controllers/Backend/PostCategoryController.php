@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use App\Models\Post\PostCategory;
-use App\Models\Post\PostCategoryTranslation;
+use App\Models\Product\Category;
+use App\Models\Product\CategoryTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -24,8 +24,8 @@ class PostCategoryController extends Controller
 
     public function __construct()
     {
-        $this->model_instance = PostCategory::class;
-        $this->model_instance_translation = PostCategoryTranslation::class;
+        $this->model_instance = Category::class;
+        $this->model_instance_translation = CategoryTranslation::class;
         $this->index_view = 'dashboard.categories.index';
         $this->create_view = 'dashboard.categories.create';
         $this->show_view = 'dashboard.categories.show';

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Post;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostTags extends Model
+class ProductMedia extends Model
 {
     use HasFactory;
 }
