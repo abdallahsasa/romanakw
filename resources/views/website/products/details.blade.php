@@ -117,113 +117,52 @@
                             <h3 class="title">Americano 2d Burger</h3>
                             <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et doloreey.</p>
-                            <ul class="pl_list">
-                                <li>Great feature with amzing sound</li>
-                                <li>100% new trend with much more color</li>
-                                <li>Unlimited guarantee</li>
-                            </ul>
+
+                            <p>Great feature with amzing sound 100% new trend with much more color Unlimited guarantee
+                            </p>
                             <h4 class="price"><strong>$248.99</strong></h4>
                             <div class="review_wrap ul_li">
                                 <ul class="review ul_li">
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fal fa-star"></i></li>
-                                    <li><i class="fal fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
                                 </ul>
                                 <div class="text">
-                                    <span>132 Review</span>
+                                    <span>{{random_int(10,200)}} Review</span>
                                 </div>
                             </div>
-                            <ul class="btns_group ul_li">
-                                <li>
-                                    <div class="quantity_input quantity_boxed">
-                                        <h4 class="quantity_title">Quantity</h4>
-                                        <div class="cart-plus-minus">
-                                            <div class="dec qtybutton">-</div>
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-                                            <div class="inc qtybutton">+</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a class="thm_btn thm_btn-black" href="cart.html">Add To Cart</a></li>
-                            </ul>
-                            <div class="details_share_links">
-                                <h4 class="list_title"><i class="fal fa-share"></i> Share</h4>
-                                <div class="social_links">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
-                                    <a href="#"><i class="fab fa-behance"></i></a>
-                                </div>
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Weight</th>
+                                        <td class="product_weight">1.4 oz</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Dimensions</th>
+                                        <td class="product_dimensions">62 × 56 × 12 in</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Size</th>
+                                        <td class="product_dimensions">XL, XXL, LG, SM, MD</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="product_info_wrap mb-50">
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="nav nav-pills product_info" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-home" type="button" role="tab"
-                                        aria-controls="pills-home" aria-selected="true">Product Details</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-profile" type="button" role="tab"
-                                        aria-controls="pills-profile" aria-selected="false"> Additionnal Imformation</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-contact" type="button" role="tab"
-                                        aria-controls="pills-contact" aria-selected="false">Review (3)</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                <div class="info_wrap">
-                                    <p>Rrem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <div class="info_wrap">
-                                    <div class="table-responsive">
-                                        <h3 class="title">Additional information</h3>
-                                        <table class="table">
-                                            <tbody>
-                                            <tr>
-                                                <th>Weight</th>
-                                                <td class="product_weight">1.4 oz</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Dimensions</th>
-                                                <td class="product_dimensions">62 × 56 × 12 in</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Size</th>
-                                                <td class="product_dimensions">XL, XXL, LG, SM, MD</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <div class="info_wrap">
-                                    <p>Rrem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cint explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,</p>
-                                    <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididulabore et doloreey.consectetur adipisicing elit, sed do eiusmod temporRorem ipsum doloadipisicing elit, sed do eiusmod tempor</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <div class="releted_product">
                 <div class="sec_title sec_title-2">
-                    <h2>Related products</h2>
+                    <h2>Pair your favorite drink with the perfect accompaniments.</h2>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 col-sm-6 mb-30">

@@ -4,8 +4,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Frudbaz - Restaurant HTML Template</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('website/img/favicon.png')}}">
+    <title>Romana Juices| عصائر رمانة</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('website/img/Logo.png')}}">
 
     <!-- css include -->
     <link rel="stylesheet" href="{{asset('website/css/bootstrap.min.css')}}">
