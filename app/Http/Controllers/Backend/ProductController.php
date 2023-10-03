@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class PostController extends Controller
+class ProductController extends Controller
 {
     private $createRoute;
     private $success_message;
@@ -27,22 +27,22 @@ class PostController extends Controller
     public function __construct()
     {
         $this->model_instance = Product::class;
-        $this->index_view = 'dashboard.posts.index';
-        $this->create_view = 'dashboard.posts.create';
-        $this->show_view = 'dashboard.posts.show';
-        $this->edit_view = 'dashboard.posts.edit';
+        $this->index_view = 'dashboard.products.index';
+        $this->create_view = 'dashboard.products.create';
+        $this->show_view = 'dashboard.products.show';
+        $this->edit_view = 'dashboard.products.edit';
 
-        $this->create_route = 'dashboard.posts.create';
-        $this->edit_route = 'dashboard.posts.edit';
+        $this->create_route = 'dashboard.products.create';
+        $this->edit_route = 'dashboard.products.edit';
 
 
-        $this->success_message = 'Post created successfully';
-        $this->error_message = "Failed to create post.";
+        $this->success_message = 'Product created successfully';
+        $this->error_message = "Failed to create product.";
 
-        $this->update_success_message = 'Post updated successfully!';
-        $this->update_error_message = "Unfortunately, the post could not be updated";
+        $this->update_success_message = 'Product updated successfully!';
+        $this->update_error_message = "Unfortunately, the product could not be updated";
 
-        $this->delete_message = 'Post deleted successfully';
+        $this->delete_message = 'Product deleted successfully';
         $this->error = 'Something went Wrong';
         $this->model_instance_translation = ProductTranslation::class;
         $this->languages = Language::all();
@@ -57,14 +57,14 @@ class PostController extends Controller
 
 
         if ($filter == "all") {
-            $posts = $this->model_instance::all()->sortBy('id');
+            $products = $this->model_instance::all()->sortBy('id');
         } else
-            $posts = $this->model_instance::all()->sortBy('id');
+            $products = $this->model_instance::all()->sortBy('id');
 
         $categories = Category::where('status', '=', 'active')->get();
 
 
-        return view($this->index_view, compact(['posts', 'categories', 'filter']));
+        return view($this->index_view, compact(['products', 'categories', 'filter']));
     }
 
     /**
@@ -76,18 +76,17 @@ class PostController extends Controller
         return view($this->create_view, compact('categories'));
     }
 
-    private function postStoreValidationRules()
+    private function productStoreValidationRules()
     {
         $rules = [
             'title' => 'required|string|min:3|max:200',
-            'slug' => 'required|string|unique:posts,slug|max:255',
+            'slug' => 'required|string|unique:products,slug|max:255',
             'description' => 'required|string|min:3',
             'excerpt' => 'nullable|string|max:500',
-            'category_id' => 'required|exists:post_categories,id',
+            'category_id' => 'required|exists:categories,id',
             'featured_image' => 'required|image|mimes:jpg,jpeg,png',
             'status' => 'required|in:published,draft,private,deleted',
             'featured' => 'required|boolean',
-            'video_link' => 'nullable|string|max:255',
             'meta_title' => 'required|string|max:255',
             'meta_description' => 'required|string|max:500',
         ];
@@ -107,19 +106,18 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated_data = $request->validate($this->postStoreValidationRules());
-        try {
+        $validated_data = $request->validate($this->productStoreValidationRules());
+
 
             DB::beginTransaction();
             $object = $this->model_instance::create(Arr::except($validated_data, ['image', 'gallery']));
-            $object->sort_number = $object->id;
 
             foreach ($this->languages as $language) {
                 if ($language->code != 'en') {
                     // Create translation model records
                     if (isset($validated_data[$language->code])) {
                         $TranslationData = $validated_data[$language->code];
-                        $TranslationData['post_id'] = $object->id;
+                        $TranslationData['product_id'] = $object->id;
                         $TranslationData['language_id'] = $language->id;
                         //return $TranslationData;
                         $Model = $this->model_instance_translation::create($TranslationData);
@@ -128,10 +126,10 @@ class PostController extends Controller
                 }
             }
             if ($request->hasFile('gallery')) {
-                $PostImages = $request->file('gallery');
-                if (is_array($PostImages)) {
-                    foreach ($PostImages as $image) {
-                        $img_file_path = Storage::disk('public_images')->put('posts', $image);
+                $ProductImages = $request->file('gallery');
+                if (is_array($ProductImages)) {
+                    foreach ($ProductImages as $image) {
+                        $img_file_path = Storage::disk('public_images')->put('products', $image);
                         $image_name = $image->getClientOriginalName();
                         $image_url = getMediaUrl($img_file_path);
                         $object->media()->create([
@@ -158,13 +156,10 @@ class PostController extends Controller
 
             $object->save();
             DB::commit();
-            $logMessage = trans('posts.create_log') . '#' . $object->id;
+            $logMessage = trans('products.create_log') . '#' . $object->id;
             //UserActivity::logActivity($logMessage);
             return redirect()->route($this->create_route)->with('success', $this->success_message);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->route($this->create_route)->with('error', $this->error_message);
-        }
+
     }
 
 

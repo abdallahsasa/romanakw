@@ -20,8 +20,6 @@ return new class extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->index('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('featured_image_name')->nullable();
-            $table->string('featured_image_url');
             $table->enum('status',['published','draft','private','deleted'])->default('published');
             $table->string('video_link')->nullable();
             $table->string('meta_title');

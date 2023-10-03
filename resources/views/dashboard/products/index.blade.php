@@ -4,12 +4,12 @@
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
-                <h4 class="mb-0">All Restaurants</h4>
+                <h4 class="mb-0">All Product</h4>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pe-0 float-start float-sm-end">
                     <li class="breadcrumb-item"><a href="/dashboard/index" class="default-color">Home</a></li>
-                    <li class="breadcrumb-item active ps-0">All Restaurants</li>
+                    <li class="breadcrumb-item active ps-0">All Product</li>
                 </ol>
             </div>
         </div>
@@ -43,26 +43,26 @@
                             <tbody>
 
 
-                            @foreach($posts as $post )
+                            @foreach($products as $product )
                                 <tr>
 
-                                    <td>{{$post->title}}</td>
-                                    <td>{{$post->slug}}</td>
+                                    <td>{{$product->title}}</td>
+                                    <td>{{$product->slug}}</td>
                                     <td><span
-                                            class="@if($post->status == 'active')text-success @else text-danger @endif ">{{$post->status}} </span>
+                                            class="@if($product->status == 'active')text-success @else text-danger @endif ">{{$product->status}} </span>
                                     </td>
-                                    <td> <span class=" @if ($post->featured == '1') text-success @else text-danger @endif "> @if($post->featured == 1) Yes @else No @endif </span></td>
-                                    <td>{{$post->category->name}}</td>
+                                    <td> <span class=" @if ($product->featured == '1') text-success @else text-danger @endif "> @if($product->featured == 1) Yes @else No @endif </span></td>
+                                    <td>{{$product->category->name}}</td>
                                     <td>
                                         <div class="row justify-content-center">
-                                            <a class="pe-2 w-auto" href="{{ route('dashboard.posts.edit', $post->id) }}">
+                                            <a class="pe-2 w-auto" href="{{ route('dashboard.products.edit', $product->id) }}">
                                                 <button class="btn btn-warning fa fa-pencil"></button>
                                             </a>
                                             <a class="pe-2 w-auto">
-                                                <form method="POST" action="{{ route('dashboard.posts.destroy', $post->id) }}">
+                                                <form method="POST" action="{{ route('dashboard.products.destroy', $product->id) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" class="btn-danger btn  fa fa-trash-o" onclick="return confirm('Are you sure you want to delete {{$post->name}}')"></button>
+                                                    <button type="button" class="btn-danger btn  fa fa-trash-o" onclick="return confirm('Are you sure you want to delete {{$product->name}}')"></button>
                                                 </form>
                                             </a>
                                         </div>
@@ -85,7 +85,7 @@
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('dashboard.posts.data') }}",
+                ajax: "{{ route('dashboard.products.data') }}",
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'sku', name: 'sku'},

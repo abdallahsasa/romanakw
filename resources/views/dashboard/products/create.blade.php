@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
-                <h4 class="mb-0">Add New Post</h4>
+                <h4 class="mb-0">Add New Product</h4>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pe-0 float-start float-sm-end">
                     <li class="breadcrumb-item"><a href="/backoffice/dashboard/index" class="default-color">Home</a>
                     </li>
-                    <li class="breadcrumb-item active ps-0">Add New Post</li>
+                    <li class="breadcrumb-item active ps-0">Add New Product</li>
                 </ol>
             </div>
         </div>
@@ -37,7 +37,7 @@
             @endif
             <div class="card card-statistics mb-30">
                 <div class="card-body">
-                    <form action="{{ route('dashboard.posts.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-30">
@@ -48,7 +48,7 @@
                                             <div class="form-group mb-3">
                                                 <div class="checkbox checbox-switch switch-success">
                                                     <label>
-                                                        <input name="featured" type="checkbox" id="featuredPost"
+                                                        <input name="featured" type="checkbox" id="featuredProduct"
                                                                checked="" value="1">
                                                         <span></span>
                                                         Yes/No
@@ -67,7 +67,7 @@
                                         <div class="mb-3 col-6">
                                             <label class="form-label" for="title">Title</label>
                                             <input required name="title" type="text" class="form-control"
-                                                   value="{{old('title')}}" id="name" placeholder="Enter Post Name">
+                                                   value="{{old('title')}}" id="name" placeholder="Enter Product Name">
                                             @if($errors->has('title'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('title') }}
@@ -79,7 +79,7 @@
                                         <div class="mb-3 col-6">
                                             <label class="form-label" for="slug">Slug</label>
                                             <input name="slug" type="text" class="form-control"
-                                                   value="{{old('slug')}}" id="slug" placeholder="Enter Post slug">
+                                                   value="{{old('slug')}}" id="slug" placeholder="Enter Product slug">
                                             @if($errors->has('slug'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('slug') }}
@@ -175,7 +175,7 @@
                             <div class="col-md-6 mb-30">
                                 <div class="card card-statistics h-70">
                                     <div class="card-body row">
-                                        <h5 class="card-title">Post Translations </h5>
+                                        <h5 class="card-title">Product Translations </h5>
                                         <ul class="nav nav-tabs" id="languageTabs">
 
                                             @foreach($languages as $lang)
@@ -271,7 +271,7 @@
                                 </div>
                                 <div class="card card-statistics h-70">
                                     <div class="card-body row">
-                                        <h5 class="card-title">Post Media </h5>
+                                        <h5 class="card-title">Product Media </h5>
                                         <div class="tab-content">
                                             <div class="card-body row">
                                                 <div class="mb-3 col-6">
@@ -347,7 +347,7 @@
     <script>
         $(document).ready(function () {
             // Add an event listener to update the hidden input's value when the switch is toggled
-            $("#featuredPost").on("change", function () {
+            $("#featuredProduct").on("change", function () {
                 if ($(this).prop("checked")) {
                     $("#featured_hidden").val(1);
                 } else {

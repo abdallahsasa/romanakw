@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class PostCategoryController extends Controller
+class CategoryController extends Controller
 {
     private $index_view;
     private $create_view;
